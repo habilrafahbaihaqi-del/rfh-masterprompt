@@ -12,15 +12,18 @@
 </head>
 <body class="bg-slate-900 text-white font-sans antialiased">
 
-    <nav class="fixed w-full z-50 glass-panel top-0">
+    <nav class="fixed w-full z-50 glass-panel top-0 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <div class="flex-shrink-0 font-bold text-2xl tracking-wider gradient-text">RFH TOOLS</div>
+                <div class="flex-shrink-0 font-bold text-2xl tracking-wider gradient-text cursor-pointer" onclick="window.scrollTo(0,0)">
+                    RFH TOOLS
+                </div>
+                
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#home" class="hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition">Home</a>
-                        <a href="#prompt-master" class="bg-indigo-600 hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium transition">Prompt Master</a>
-                        <a href="#contact" class="hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition">Contact</a>
+                        <a href="#home" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white transition-colors">Home</a>
+                        <a href="#prompt-master" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white transition-colors">Prompt Master</a>
+                        <a href="#contact" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
                     </div>
                 </div>
             </div>
