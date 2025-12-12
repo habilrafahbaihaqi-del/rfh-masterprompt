@@ -3,19 +3,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedKey = localStorage.getItem('rfh_gemini_api_key');
     if (savedKey) {
         document.getElementById('apiKey').value = savedKey;
+        // Visual feedback bahwa key terload
         document.getElementById('apiKey').style.borderColor = '#4ade80'; 
     }
 });
 
 async function generatePrompt() {
-    // 1. PENGATURAN API KEY & MODEL
+    // 1. Ambil API Key & Model
     const apiKey = document.getElementById('apiKey').value.trim();
-    
-    // --- PILIHAN MODEL AI ---
-    // Gunakan 'gemini-1.5-flash' untuk versi stabil & cepat.
-    // Gunakan 'gemini-2.0-flash-exp' jika ingin mencoba fitur experimental terbaru.
-    // Catatan: 'gemini-2.5-flash' BELUM ADA, jangan digunakan nanti error.
-    
+    // Jika Anda belum menambahkan dropdown model di HTML, kita default ke flash
+    // Jika sudah ada dropdown, uncomment baris di bawah:
+    // const selectedModel = document.getElementById('aiModel') ? document.getElementById('aiModel').value : 'gemini-2.5-flash';
     const selectedModel = 'gemini-2.5-flash'; 
 
     // Validasi API Key
@@ -27,7 +25,7 @@ async function generatePrompt() {
 
     localStorage.setItem('rfh_gemini_api_key', apiKey);
 
-    // 2. Ambil Input User
+    // 2. Ambil semua input user
     const inputs = {
         character: document.getElementById('charDesc').value || "-",
         setting: document.getElementById('setting').value || "-",
@@ -41,7 +39,7 @@ async function generatePrompt() {
         mood: document.getElementById('mood').value,
     };
 
-    // 3. Setup Tampilan Loading
+    // 3. Setup UI Loading State
     const btn = document.getElementById('generateBtn');
     const btnText = document.getElementById('btnText');
     const btnIcon = document.getElementById('btnIcon');
@@ -49,35 +47,35 @@ async function generatePrompt() {
     
     btn.disabled = true;
     btn.classList.add('opacity-50', 'cursor-not-allowed');
-    btnText.innerText = "GEMINI SEDANG MENULIS...";
+    btnText.innerText = "SEDANG MERANGKAI KATA...";
     btnIcon.classList.remove('fa-robot');
     btnIcon.classList.add('fa-spinner', 'fa-spin');
-    output.innerText = "Sedang menghubungi server Gemini (" + selectedModel + ")...";
+    output.innerText = "Sedang menulis prompt video bahasa Indonesia...";
 
-    // 4. INSTRUKSI PROMPT (Bahasa Indonesia & Naratif)
+    // 4. INSTRUKSI BARU (BAHASA INDONESIA & TEXT BIASA)
     const systemPrompt = `
-        Peran: Kamu adalah Prompt Engineer Video Profesional.
-        Tugas: Buatkan deskripsi visual video (Scene Description) dalam BAHASA INDONESIA berdasarkan data berikut.
+        Peran: Anda adalah Sutradara Video Kreatif dan Penulis Prompt AI.
+        Tugas: Buatkan deskripsi video yang detail dan naratif dalam BAHASA INDONESIA berdasarkan input pengguna.
         
-        DATA INPUT:
+        INPUT PENGGUNA:
         - Karakter: ${inputs.character}
-        - Lokasi: ${inputs.setting}
-        - Aktivitas: ${inputs.action}
-        - Dialog/Inti Bicara: ${inputs.dialog}
+        - Latar Tempat: ${inputs.setting}
+        - Aksi: ${inputs.action}
+        - Dialog/Tujuan: ${inputs.dialog}
         - Gaya Visual: ${inputs.style}
-        - Sudut Kamera: ${inputs.angle}, Pergerakan: ${inputs.move}
+        - Kamera: ${inputs.angle}, ${inputs.move}
         - Pencahayaan: ${inputs.lighting}
-        - Suasana (Mood): ${inputs.mood}
+        - Mood: ${inputs.mood}
 
-        ATURAN OUTPUT:
-        1. JANGAN pakai format JSON. Gunakan format teks paragraf biasa.
-        2. Tuliskan deskripsi yang sangat detail, membayangkan bagaimana video itu terlihat di layar.
-        3. Jelaskan ekspresi wajah, detail tekstur, dan pencahayaan.
-        4. Gunakan Bahasa Indonesia yang luwes dan enak dibaca.
-        5. Akhiri dengan satu kalimat pendek "Prompt Inggris (untuk AI):" lalu terjemahkan intinya ke bahasa Inggris dalam kurung (supaya user bisa pakai di tools luar jika perlu).
+        INSTRUKSI KHUSUS:
+        1. Jangan gunakan format JSON atau kode apapun.
+        2. Tuliskan dalam bentuk paragraf deskriptif yang mengalir enak dibaca.
+        3. Jelaskan secara rinci bagaimana visualnya terlihat, bagaimana pencahayaannya membangun suasana (${inputs.mood}), dan bagaimana kamera bergerak.
+        4. Jika ada dialog, tuliskan dengan jelas.
+        5. Gunakan Bahasa Indonesia yang kreatif dan imajinatif.
     `;
 
-    // 5. Eksekusi ke Server Google
+    // 5. Eksekusi Call ke Gemini API
     try {
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${selectedModel}:generateContent?key=${apiKey}`, {
             method: 'POST',
@@ -89,32 +87,25 @@ async function generatePrompt() {
 
         const data = await response.json();
         
-        // Cek Error
         if (data.error) throw new Error(data.error.message);
 
-        // Ambil Hasil Text
         let rawText = data.candidates[0].content.parts[0].text;
         
-        // Tampilkan Hasil
+        // Tampilkan hasil langsung (Text biasa)
         output.innerText = rawText;
 
     } catch (error) {
         console.error(error);
         output.innerText = "❌ Terjadi Kesalahan:\n" + error.message;
-        
-        if (error.message.includes('not found') || error.message.includes('404')) {
-             output.innerText += "\n\n(Kemungkinan nama Model AI salah atau belum tersedia)";
-        }
-        
         if (error.message.includes('API key') || error.message.includes('403')) {
             localStorage.removeItem('rfh_gemini_api_key');
-            alert("API Key bermasalah/kadaluarsa. Silakan cek ulang.");
+            alert("API Key bermasalah. Silakan cek kembali.");
         }
     } finally {
-        // 6. Kembalikan Tombol
+        // 6. Reset UI
         btn.disabled = false;
         btn.classList.remove('opacity-50', 'cursor-not-allowed');
-        btnText.innerText = "GENERATE PROMPT VIDEO";
+        btnText.innerText = "GENERATE PROMPT";
         btnIcon.classList.remove('fa-spinner', 'fa-spin');
         btnIcon.classList.add('fa-robot');
     }
