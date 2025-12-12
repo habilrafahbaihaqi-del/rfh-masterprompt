@@ -104,3 +104,32 @@ function copyToClipboard() {
     const copyText = document.getElementById("outputResult").innerText;
     navigator.clipboard.writeText(copyText).then(() => alert("Teks berhasil disalin!"));
 }
+
+/* --- LOGIKA NAVBAR AKTIF OTOMATIS (SCROLL SPY) --- */
+window.addEventListener('scroll', () => {
+    let current = '';
+    const sections = document.querySelectorAll('section');
+    
+    // Cari section mana yang sedang terlihat di layar
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        // Angka 100 adalah jarak offset supaya deteksinya lebih akurat
+        if (scrollY >= (sectionTop - 150)) {
+            current = section.getAttribute('id');
+        }
+    });
+
+    // Update warna tombol navbar
+    document.querySelectorAll('.nav-link').forEach(link => {
+        // Hapus warna aktif (Biru) dari semua tombol
+        link.classList.remove('bg-indigo-600', 'text-white');
+        link.classList.add('text-gray-300');
+
+        // Tambahkan warna aktif HANYA ke tombol yang sesuai
+        if (link.getAttribute('href').includes(current)) {
+            link.classList.remove('text-gray-300');
+            link.classList.add('bg-indigo-600', 'text-white');
+        }
+    });
+});
