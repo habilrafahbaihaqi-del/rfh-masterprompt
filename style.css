@@ -1,0 +1,107 @@
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #0f172a; /* Slate 900 */
+}
+::-webkit-scrollbar-thumb {
+    background: #4f46e5; /* Indigo 600 */
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #4338ca;
+}
+
+/* Glassmorphism Effect */
+.glass-panel {
+    background: rgba(15, 23, 42, 0.7); /* Dark slate with opacity */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Text Gradients */
+.gradient-text {
+    background: linear-gradient(to right, #818cf8, #d8b4fe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Input Fields Styling */
+.input-field {
+    background-color: #1e293b; /* Slate 800 */
+    border: 1px solid #334155; /* Slate 700 */
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #6366f1; /* Indigo 500 */
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.label-text {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #cbd5e1; /* Slate 300 */
+    margin-bottom: 0.25rem;
+}
+
+/* Social Icons Styling */
+.social-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s;
+}
+.social-icon:hover {
+    transform: translateY(-5px);
+}
+.icon-circle {
+    width: 3rem;
+    height: 3rem;
+    background-color: #1e293b;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+.social-label {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: #94a3b8;
+}
+
+/* Background Blobs Animation */
+.blob {
+    position: absolute;
+    width: 20rem;
+    height: 20rem;
+    border-radius: 9999px;
+    mix-blend-mode: multiply;
+    filter: blur(3xl);
+    opacity: 0.25;
+    animation: blob 7s infinite;
+}
+
+@keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+.animation-delay-4000 {
+    animation-delay: 4s;
+}

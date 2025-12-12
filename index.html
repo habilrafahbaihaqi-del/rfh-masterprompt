@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFH Tools - Video Prompt Generator</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-900 text-white font-sans antialiased">
+
+    <nav class="fixed w-full z-50 glass-panel top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0 font-bold text-2xl tracking-wider gradient-text">RFH TOOLS</div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" class="hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition">Home</a>
+                        <a href="#prompt-master" class="bg-indigo-600 hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium transition">Prompt Master</a>
+                        <a href="#contact" class="hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="min-h-screen flex flex-col justify-center items-center pt-20 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+            <div class="blob bg-purple-600 top-20 left-10"></div>
+            <div class="blob bg-indigo-600 top-20 right-10 animation-delay-2000"></div>
+            <div class="blob bg-pink-600 bottom-20 left-1/2 animation-delay-4000"></div>
+        </div>
+
+        <div class="text-center max-w-4xl px-4 mb-12 relative z-10">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6">Create Infinite <br><span class="gradient-text">Video Realities</span></h1>
+            <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+                Selamat datang di RFH Tools. Platform kreatif untuk menerjemahkan imajinasi menjadi instruksi video presisi. 
+                Hasilkan prompt JSON detail untuk AI Video Generator dengan mudah dan cepat.
+            </p>
+            <a href="#prompt-master" class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 transition transform hover:scale-105">
+                Mulai Generate <i class="fas fa-magic ml-2"></i>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-4 w-full max-w-6xl relative z-10">
+            <div class="glass-panel p-4 rounded-xl hover:-translate-y-2 transition duration-300">
+                <div class="h-40 bg-gray-800 rounded-lg mb-4 flex items-center justify-center relative group overflow-hidden">
+                    <span class="text-xs text-gray-500 absolute top-2 right-2">Video Preview</span>
+                    <i class="fas fa-city text-4xl text-gray-600 group-hover:scale-110 transition"></i>
+                </div>
+                <h3 class="font-bold text-indigo-400">Cyberpunk City</h3>
+                <p class="text-xs text-gray-400 mt-1">Neon lights, rain, JSON detail tinggi.</p>
+            </div>
+            <div class="glass-panel p-4 rounded-xl hover:-translate-y-2 transition duration-300">
+                <div class="h-40 bg-gray-800 rounded-lg mb-4 flex items-center justify-center relative group overflow-hidden">
+                    <span class="text-xs text-gray-500 absolute top-2 right-2">Video Preview</span>
+                    <i class="fas fa-cat text-4xl text-gray-600 group-hover:scale-110 transition"></i>
+                </div>
+                <h3 class="font-bold text-pink-400">Pixar Style 3D</h3>
+                <p class="text-xs text-gray-400 mt-1">Tekstur halus, ekspresi lucu, pencahayaan soft.</p>
+            </div>
+            <div class="glass-panel p-4 rounded-xl hover:-translate-y-2 transition duration-300">
+                <div class="h-40 bg-gray-800 rounded-lg mb-4 flex items-center justify-center relative group overflow-hidden">
+                    <span class="text-xs text-gray-500 absolute top-2 right-2">Video Preview</span>
+                    <i class="fas fa-leaf text-4xl text-gray-600 group-hover:scale-110 transition"></i>
+                </div>
+                <h3 class="font-bold text-green-400">Nature Macro</h3>
+                <p class="text-xs text-gray-400 mt-1">4K Realism, butiran air, cinematic.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="prompt-master" class="py-20 bg-slate-800 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold gradient-text">Prompt Master Engine</h2>
+                <p class="text-gray-400 mt-2">Isi detail parameter di bawah untuk hasil JSON yang sempurna.</p>
+            </div>
+
+            <div class="glass-panel rounded-2xl p-8 shadow-2xl border-t border-indigo-500/30">
+                <div class="mb-8">
+                    <label class="block text-sm font-medium text-indigo-300 mb-2">
+                        <i class="fas fa-key mr-1"></i> Gemini API Key
+                    </label>
+                    <input type="password" id="apiKey" placeholder="Tempel API Key Gemini Anda disini..." class="input-field w-full">
+                    <p class="text-xs text-gray-500 mt-1">*Key disimpan lokal di browser untuk sesi ini saja.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="label-text">Deskripsi Karakter</label>
+                            <textarea id="charDesc" rows="2" class="input-field w-full" placeholder="Contoh: Seorang astronaut wanita muda..."></textarea>
+                        </div>
+                        <div>
+                            <label class="label-text">Latar Tempat (Setting)</label>
+                            <textarea id="setting" rows="2" class="input-field w-full" placeholder="Contoh: Di permukaan planet Mars yang merah..."></textarea>
+                        </div>
+                        <div>
+                            <label class="label-text">Tindakan (Action)</label>
+                            <textarea id="action" rows="2" class="input-field w-full" placeholder="Contoh: Berjalan perlahan melawan badai debu..."></textarea>
+                        </div>
+                        <div>
+                            <label class="label-text">Dialog & Tujuan</label>
+                            <textarea id="dialog" rows="2" class="input-field w-full" placeholder="Contoh: 'Aku harus sampai ke base.' (Tujuan: Determinasi)..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="label-text">Gaya Visual</label>
+                                <select id="visualStyle" class="input-field w-full">
+                                    <option value="Cinematic Realism">Cinematic Realism</option>
+                                    <option value="3D Animation (Pixar Style)">3D Animation</option>
+                                    <option value="Anime Style">Anime Style</option>
+                                    <option value="CCTV Footage">Rekaman CCTV</option>
+                                    <option value="Realistic Miniature/Tilt-Shift">Miniatur Realistis</option>
+                                    <option value="ASMR Visuals (Macro & Soft)">Gaya ASMR</option>
+                                    <option value="Vintage Film">Vintage Film</option>
+                                    <option value="Cyberpunk">Cyberpunk</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="label-text">Sudut Kamera</label>
+                                <select id="cameraAngle" class="input-field w-full">
+                                    <option value="Eye Level">Eye Level</option>
+                                    <option value="Low Angle">Low Angle</option>
+                                    <option value="High Angle">High Angle</option>
+                                    <option value="Drone Shot">Drone Shot</option>
+                                    <option value="Close Up">Close Up</option>
+                                    <option value="Wide Shot">Wide Shot</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="label-text">Pergerakan Kamera</label>
+                                <select id="cameraMove" class="input-field w-full">
+                                    <option value="Static">Static</option>
+                                    <option value="Slow Pan">Slow Pan</option>
+                                    <option value="Dolly In">Dolly In</option>
+                                    <option value="Tracking Shot">Tracking Shot</option>
+                                    <option value="Handheld Shaky">Handheld Shaky</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="label-text">Pencahayaan</label>
+                                <select id="lighting" class="input-field w-full">
+                                    <option value="Natural Sunlight">Natural Sunlight</option>
+                                    <option value="Golden Hour">Golden Hour</option>
+                                    <option value="Cinematic Dark/Moody">Dark & Moody</option>
+                                    <option value="Neon Lights">Neon Lights</option>
+                                    <option value="Studio Softbox">Studio Softbox</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="label-text">Aspek Rasio</label>
+                                <select id="aspectRatio" class="input-field w-full">
+                                    <option value="16:9">16:9 (Landscape)</option>
+                                    <option value="9:16">9:16 (Portrait/TikTok)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="label-text">Suasana Hati</label>
+                                <select id="mood" class="input-field w-full">
+                                    <option value="Happy & Energetic">Bahagia & Energetik</option>
+                                    <option value="Melancholic">Sedih/Melankolis</option>
+                                    <option value="Tense/Horror">Tegang/Horror</option>
+                                    <option value="Peaceful/Calm">Damai/Tenang</option>
+                                    <option value="Mysterious">Misterius</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 text-center">
+                    <button onclick="generatePrompt()" id="generateBtn" class="w-full md:w-1/2 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold py-4 px-6 rounded-lg shadow-lg transform transition hover:scale-105 flex justify-center items-center mx-auto border border-white/10">
+                        <span id="btnText">GENERATE PROMPT JSON</span>
+                        <i id="btnIcon" class="fas fa-robot ml-2"></i>
+                    </button>
+                </div>
+
+                <div class="mt-8">
+                    <div class="flex justify-between items-center mb-2">
+                        <label class="label-text text-indigo-300">Hasil JSON Prompt:</label>
+                        <button onclick="copyToClipboard()" class="text-xs bg-indigo-900/50 hover:bg-indigo-800 border border-indigo-500/30 px-3 py-1 rounded text-white transition flex items-center">
+                            <i class="fas fa-copy mr-1"></i> Salin Code
+                        </button>
+                    </div>
+                    <div class="relative">
+                        <pre id="outputResult" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-4 text-green-400 font-mono text-xs md:text-sm h-72 overflow-y-auto whitespace-pre-wrap shadow-inner">Hasil prompt akan muncul di sini...</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-16 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-8 gradient-text">Hubungi Creator</h2>
+            <div class="flex flex-wrap justify-center gap-6 md:gap-10">
+                <a href="mailto:habilrafahbaihaqi@gmail.com" class="social-icon group">
+                    <div class="icon-circle group-hover:bg-red-500">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </div>
+                    <span class="social-label">Email</span>
+                </a>
+                <a href="https://wa.me/6281256207363" class="social-icon group">
+                    <div class="icon-circle group-hover:bg-green-500">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                    </div>
+                    <span class="social-label">WhatsApp</span>
+                </a>
+                <a href="/instagram.com/habilrafahh" class="social-icon group">
+                    <div class="icon-circle group-hover:bg-pink-600">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </div>
+                    <span class="social-label">Instagram</span>
+                </a>
+                <a href="#" class="social-icon group">
+                    <div class="icon-circle group-hover:bg-red-600">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </div>
+                    <span class="social-label">YouTube</span>
+                </a>
+                <a href="/tiktok.com/@habilrafah" class="social-icon group">
+                    <div class="icon-circle group-hover:bg-gray-200 group-hover:text-black">
+                        <i class="fab fa-tiktok text-xl"></i>
+                    </div>
+                    <span class="social-label">TikTok</span>
+                </a>
+            </div>
+            <p class="mt-12 text-gray-600 text-sm border-t border-gray-800 pt-8">&copy; 2025 RFH Tools. Designed for Creators.</p>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
