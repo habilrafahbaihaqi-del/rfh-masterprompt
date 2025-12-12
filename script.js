@@ -14,7 +14,7 @@ async function generatePrompt() {
     // Jika Anda belum menambahkan dropdown model di HTML, kita default ke flash
     // Jika sudah ada dropdown, uncomment baris di bawah:
     // const selectedModel = document.getElementById('aiModel') ? document.getElementById('aiModel').value : 'gemini-1.5-flash';
-    const selectedModel = 'gemini-1.5-flash'; 
+    const selectedModel = 'gemini-2.5-flash'; 
 
     // Validasi API Key
     if (!apiKey) {
